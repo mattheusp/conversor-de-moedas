@@ -3,13 +3,13 @@ let botaoConverter = document.querySelector("button");
 let resultado = document.querySelector(".resultado");
 
 async function convverterMoeda() {
-    requestURL = 'https://api.exchangerate.host/convert?from=USD&to=EUR&amout=${quantia.value}';
+    const requestURL = `https://api.exchangerate.host/convert?from=USD&to=EUR&amount=${quantia.value}`;
     let response = await fetch(requestURL);
-    let data = response.json();
-    resultado.textContent = data.result.topFixed(2);
+    let data = await response.json(); 
+    resultado.textContent = data.result.toFixed(2); 
 }
 
-botaoConverter.addEventListener("click", e => {
+botaoConverter.addEventListener("click", async (e) => { 
     e.preventDefault();
-    convverterMoeda();
-})
+    await convverterMoeda(); 
+});
